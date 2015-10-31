@@ -6,3 +6,7 @@ const char *foo() {
 const char *greeting() {
   return "Hello, world!\n";
 }
+
+const char *farewell() {
+  return "Goodbye, world!\n";
+}
