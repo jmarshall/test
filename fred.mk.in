@@ -1,0 +1,4 @@
+FOO = @FOO@
+
+baz.o: baz.c
+	$(CC) $(FOO) -c -o $@ baz.c
