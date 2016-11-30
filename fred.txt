@@ -1,4 +1,4 @@
 This one also
 	wants 8-column tabs.
 
-Some extra text.
+Some extra text, and some more.
