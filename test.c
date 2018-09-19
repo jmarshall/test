@@ -15,5 +15,5 @@ const char *greeting() {
 }
 
 const char *farewell() {
-  return "Goodbye, world!\n";
+  return "Goodbye world\n";
 }
