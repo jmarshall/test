@@ -9,4 +9,4 @@ And another one.
 A line without meaning.
 One more line for today.
 Testing the author thing again. And again.
-May author test with a different GitHub user as author.
+Second May author test with a different GitHub user as author and different email addressed for me.
