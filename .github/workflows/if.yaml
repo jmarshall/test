@@ -1,0 +1,15 @@
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: lowercase
+        if: ${{ runner.os == 'linux' }}
+        run: env | sort
+
+      - name: uppercase
+        if: ${{ runner.os == 'Linux' }}
+        run: ls $RUNNER_TOOL_CACHE
