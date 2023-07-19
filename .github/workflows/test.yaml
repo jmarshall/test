@@ -1,0 +1,69 @@
+name: Test shell
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test1:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: test1 default shell
+        run: |
+          echo one
+          false
+          echo two
+
+  test2:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: test2 sh
+        shell: sh
+        run: |
+          echo one
+          false
+          echo two
+
+  test3:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: test3 bash
+        shell: bash
+        run: |
+          echo one
+          false
+          echo two
+
+  test4:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: test4 login quoted
+        shell: "bash -l {0}"
+        run: |
+          echo one
+          false
+          echo two
+
+  test5:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: test5 login unquoted
+        shell: bash -l {0}
+        run: |
+          echo one
+          false
+          echo two
+
+  test6:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: test6
+        run: |
+          false
