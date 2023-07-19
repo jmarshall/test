@@ -60,6 +60,17 @@ jobs:
           false
           echo two
 
+  test5a:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: test5a error login unquoted
+        shell: bash -el {0}
+        run: |
+          echo one
+          false
+          echo two
+
   test6:
     runs-on: ubuntu-latest
     continue-on-error: true
