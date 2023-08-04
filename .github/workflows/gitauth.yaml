@@ -1,0 +1,15 @@
+name: Git auth
+
+on: workflow_dispatch
+
+jobs:
+  tokentest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate to GitHub
+        env:
+          TOKEN: ${{ secrets.gitauth_token }}
+        run: |
+          git config --global credential.helper store
+          echo "$TOKEN" | git credential approve
+          cat ~/.git-credentials
