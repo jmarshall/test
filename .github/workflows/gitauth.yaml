@@ -11,7 +11,7 @@ jobs:
         with:
           repository: "jmarshall/samtools"
           path: banana
-          token: carrot
+          token: ${{ secrets.nonexistent }}
 
       - name: Authenticate to GitHub
         env:
