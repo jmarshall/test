@@ -6,6 +6,12 @@ jobs:
   tokentest:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out another repo
+        uses: actions/checkout@v3
+        with:
+          repository: "jmarshall/samtools"
+          path: banana
+
       - name: Authenticate to GitHub
         env:
           TOKEN: ${{ secrets.gitauth_token }}
