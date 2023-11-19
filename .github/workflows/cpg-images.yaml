@@ -1,0 +1,20 @@
+name: Deploy images and config
+on:
+  workflow_dispatch:
+
+jobs:
+  # Deploy the images that have changed to the registry
+  deploy_images:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+      BUILDKIT_PROGRESS: plain
+      CLOUDSDK_CORE_DISABLE_PROMPTS: 1
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "build image"
+        run: |
+          docker build \
+          --build-arg VERSION=1.18 \
+          image-samtools
