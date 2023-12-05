@@ -1,4 +1,4 @@
-name: Check ghostscript (latest)
+name: Check ghostscript (TL2022-historic)
 on:
   workflow_dispatch:
 
