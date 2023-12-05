@@ -1,0 +1,10 @@
+name: texlive
+description: Run commands in a TeXLive docker image
+
+runs:
+  using: docker
+  image: docker://texlive/texlive:latest
+  entrypoint: /bin/sh
+  args:
+    - -c
+    - gs --version

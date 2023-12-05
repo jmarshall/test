@@ -1,0 +1,14 @@
+name: Check ghostscript (latest)
+on:
+  workflow_dispatch:
+
+jobs:
+  checkgs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run LaTeX
+        uses: ./.github/actions/texlive
