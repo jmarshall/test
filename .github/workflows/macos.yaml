@@ -1,0 +1,13 @@
+name: macOS runners
+
+on: workflow_dispatch
+
+jobs:
+  runner:
+    runs-on: macos-${{ matrix.v }}
+    strategy:
+      matrix:
+        v: ['11', '12', '13', '14', 'latest']
+    steps:
+      - name: uname
+        run:  uname -a
