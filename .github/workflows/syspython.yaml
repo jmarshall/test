@@ -1,0 +1,28 @@
+name: Pythons
+
+on: workflow_dispatch
+
+jobs:
+  runner:
+    runs-on: ${{ matrix.v }}
+    strategy:
+      matrix:
+        v: ['macos-11', 'macos-12', 'macos-13', 'macos-14', 'macos-latest', 'ubuntu-latest']
+
+    steps:
+      - name: what snakes
+        run: |
+          type python || true
+          type python3 || true
+          type python2 || true
+          set -x
+          uname -a
+          python -V || true
+          python3 -V || true
+          python2 -V || true
+
+      - name: direct snake
+        shell: python
+        run: |
+          import sys
+          print(sys.version)
