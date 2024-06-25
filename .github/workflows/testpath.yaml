@@ -1,0 +1,17 @@
+name: Test PATH in env
+
+on: workflow_dispatch
+
+jobs:
+  test1:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    env:
+      PATH: "/banana/bin:$PATH"
+    steps:
+      - name: test1 default shell
+        run: |
+          echo $PATH
+          echo one
+          false
+          echo two
