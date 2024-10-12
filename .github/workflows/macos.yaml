@@ -7,7 +7,7 @@ jobs:
     runs-on: macos-${{ matrix.v }}
     strategy:
       matrix:
-        v: ['11', '12', '13', '14', 'latest']
+        v: ['11', '12', '13', '14', '15', 'latest']
     steps:
       - name: uname
         run:  uname -a
