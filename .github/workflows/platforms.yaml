@@ -1,0 +1,17 @@
+name: Test checker
+
+on: workflow_dispatch
+
+jobs:
+  check:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-13, macos-latest, ubuntu-24.04-arm, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check platform ${{ matrix.os }} is the expected architecture
+        run:  ./check-platform.sh ${{ matrix.os }}
