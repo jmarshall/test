@@ -3,8 +3,8 @@
 case $1 in
     ubuntu-*-arm)  expected=arm ;;
     macos-13)      expected=x86_64 ;;
-    ubuntu-*)      expected=x86_64 ;;
-    macos-*)       expected=arm ;;
+    ubuntu-*)      expected=sparc ;;
+    macos-*)       expected=mips ;;
     windows-*)     expected=x86_64 ;;
     *)
 	echo Unknown platform $1 >&2
