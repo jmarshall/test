@@ -12,6 +12,7 @@ jobs:
           echo "rc=0" >> $GITHUB_OUTPUT
 
       - name: Build web front-end
+        id: buildweb
         run: |
           echo "web_rc=bork" >> $GITHUB_OUTPUT
 
@@ -28,3 +29,10 @@ jobs:
         with:
           script: |
             core.setFailed('Web failed to build with rc = ${{ steps.runtests.outputs.web_rc }}')
+
+      - name: Log them
+        run: |
+          echo steps.runtests.outputs.rc is ${{ steps.runtests.outputs.rc }}
+          echo steps.runtests.outputs.web_rc is ${{ steps.runtests.outputs.web_rc }}
+          echo steps.buildweb.outputs.rc is ${{ steps.buildweb.outputs.rc }}
+          echo steps.buildweb.outputs.web_rc is ${{ steps.buildweb.outputs.web_rc }}
