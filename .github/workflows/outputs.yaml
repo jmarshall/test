@@ -9,7 +9,7 @@ jobs:
       - name: Run unit tests
         id: runtests
         run: |
-          echo "rc=0" >> $GITHUB_OUTPUT
+          echo "rc=foobar" >> $GITHUB_OUTPUT
 
       - name: Build web front-end
         id: buildweb
@@ -17,14 +17,20 @@ jobs:
           echo "web_rc=bork" >> $GITHUB_OUTPUT
 
       - name: Fail if unit tests are not passing
-        if: ${{ steps.runtests.outputs.rc != 0}}
         uses: actions/github-script@v6
         with:
           script: |
             core.setFailed('Unittests failed with rc = ${{ steps.runtests.outputs.rc }}')
 
+      - name: Fail if unit tests are not passing
+        env:
+          rc: ${{ steps.runtests.outputs.rc }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Unittests failed with rc = ${rc}')
+
       - name: Fail if web build fails
-        if: ${{ steps.runtests.outputs.rc != 0}}
         uses: actions/github-script@v6
         with:
           script: |
