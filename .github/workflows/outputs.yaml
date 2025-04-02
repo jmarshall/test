@@ -9,7 +9,7 @@ jobs:
       - name: Run unit tests
         id: runtests
         run: |
-          echo "rc=foobar" >> $GITHUB_OUTPUT
+          echo "rc=0" >> $GITHUB_OUTPUT
 
       - name: Build web front-end
         run: |
