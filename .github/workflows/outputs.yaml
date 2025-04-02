@@ -1,0 +1,30 @@
+name: Check outputs
+on:
+  workflow_dispatch:
+
+jobs:
+  testo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run unit tests
+        id: runtests
+        run: |
+          echo "rc=foobar" >> $GITHUB_OUTPUT
+
+      - name: Build web front-end
+        run: |
+          echo "web_rc=bork" >> $GITHUB_OUTPUT
+
+      - name: Fail if unit tests are not passing
+        if: ${{ steps.runtests.outputs.rc != 0}}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Unittests failed with rc = ${{ steps.runtests.outputs.rc }}')
+
+      - name: Fail if web build fails
+        if: ${{ steps.runtests.outputs.rc != 0}}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Web failed to build with rc = ${{ steps.runtests.outputs.web_rc }}')
