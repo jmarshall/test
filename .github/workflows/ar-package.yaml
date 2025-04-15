@@ -17,3 +17,11 @@ jobs:
 
       - name: List installed modules
         run: pip list -v
+
+      - name: Install prerequisites
+        run: |
+          # Ensure setuptools produces a PEP625-compliant sdist filename
+          pip install 'setuptools>=69.3.0'
+
+      - name: List installed modules again
+        run: pip list -v
