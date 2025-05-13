@@ -1,0 +1,22 @@
+name: Test env details
+on:
+  workflow_dispatch:
+
+jobs:
+  env_in_env:
+    runs-on: ubuntu-latest
+    env:
+      BANANA: hello I am banana
+
+    steps:
+      - env:
+          CARROT_C: ${{ github.workspace }}
+          CARROT_V: $GITHUB_WORKSPACE
+          BANA_SQ:  what $BANANA is this
+
+        run: |
+          env | sort
+          echo BANANA is :$BANANA:
+          echo BANA_SQ is :$BANA_SQ:
+          echo CARROT_C is :$CARROT_C:
+          echo CARROT_V is :$CARROT_V:
