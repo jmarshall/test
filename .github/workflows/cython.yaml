@@ -22,6 +22,10 @@ jobs:
 
       - name: Cython version
         shell: python
+        continue-on-error: true
         run: |
           import Cython
           print(Cython.__version__)
+
+      - name: Install Cython
+        run: pip install cython
