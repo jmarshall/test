@@ -8,10 +8,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-13, macos-latest, ubuntu-24.04-arm, windows-latest]
+        os: [ubuntu-latest, macos-15-intel, macos-latest, ubuntu-24.04-arm, windows-latest]
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Show python platform
+        shell: python
+        run: |
+          import platform
+          print(f"{platform.machine()=}")
+          print(f"{platform.processor()=}")
+          print(f"{platform.platform()=}")
+          print(f"{platform.uname()=}")
+
 
       - name: Check platform ${{ matrix.os }} is the expected architecture
         run:  ./check-platform.sh ${{ matrix.os }}
