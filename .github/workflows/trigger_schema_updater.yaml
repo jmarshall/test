@@ -1,0 +1,32 @@
+name: Trigger Schema Updater
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment (prod or dev)'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - prod
+          - dev
+
+jobs:
+  invoke-cloud-run:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - id: 'invoke-cloud-run'
+        name: 'Invoke Cloud Run foo $ENVIRONMENT bar ${{ github.event.inputs.environment }} baz'
+        env:
+          ENVIRONMENT: ${{ github.event.inputs.environment }}
+        run: |
+          echo .../execute-liquibase?environment=$ENVIRONMENT
