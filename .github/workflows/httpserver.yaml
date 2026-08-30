@@ -1,0 +1,33 @@
+name: HTTPServer startup
+on:
+  workflow_dispatch:
+
+jobs:
+  multi:
+    runs-on: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [macos-15-intel, macos-26-intel, macos-15, macos-26, macos-latest, ubuntu-latest, ubuntu-26.04]
+        host:  ["localhost", "127.0.0.1"]
+
+    steps:
+      - uses: actions/setup-python@v7
+        with:
+          python-version: 3.14
+
+      - run: hostname
+
+      - shell: python
+        env:
+          HOSTNAME: ${{ matrix.host }}
+        run: |
+          import http.server
+          import os
+          from datetime import datetime
+
+          host = os.environ["HOSTNAME"]
+          print(f"S0 {datetime.now()} {host}")
+          server = http.server.HTTPServer((host, 0), http.server.SimpleHTTPRequestHandler)
+          print(f"S1 {datetime.now()}")
+          #server.serve_forever()
