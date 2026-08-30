@@ -8,6 +8,7 @@ jobs:
   multi:
     runs-on: ${{ matrix.image }}
     strategy:
+      fail-fast: false
       matrix:
         image: [macos-15-intel, macos-26-intel, macos-15, macos-26, macos-latest, ubuntu-latest, ubuntu-26.04]
 
