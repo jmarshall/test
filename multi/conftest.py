@@ -20,7 +20,8 @@ def _httpd(wconn, directory):
         def log_message(self, format, *args):
             pass
 
-    server = QuietHTTPServer(("localhost", 0), QuietRequestHandler)
+    #server = QuietHTTPServer(("localhost", 0), QuietRequestHandler)
+    server = QuietHTTPServer(("127.0.0.1", 0), QuietRequestHandler)
     wconn.send(server.server_address)
     server.serve_forever()
 
